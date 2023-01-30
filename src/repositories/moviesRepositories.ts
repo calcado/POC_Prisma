@@ -1,36 +1,37 @@
 import { MovieId, Movies,Platform, Review } from "../protocols/movie.js";
 import prisma from "../database/database.js";
+import { Prisma } from "@prisma/client";
 
 
 
-export async function listAllMovies(){
-    
+export async function listAllMovies(){      
     return prisma.movies.findMany()
-    // return connection.query(`SELECT * FROM movies;`);
-    
+
 }
 
 export async function getPlatformTotal(plat: Platform){
-    return prisma.movies.findFirst({where : plat})
-    // return connection.query(`SELECT COUNT(id), platform FROM movies WHERE platform=$1;`,[plat.platform]);
-}
+    const count = await prisma.movies.count({
+        where :plat
+        })
+    return count 
+    }
 
-export async function insertMovie(
-    name: string,
-    platform: string,
-    genre: string,
-    status: string
+export async function insertMovie(data:
+    Prisma.moviesUncheckedCreateInput
 ){
     return prisma.movies.create({
-       data: {
-        name,
-        platform,
-        genre,
-        status,
+       data, 
+       select:{
+        name: true,
+        platform: true,
+        genre: true,
+        status: true,
+        notes: true
+
+
        },
     })
-    // return connection.query(`INSERT INTO movies (name, platform, genre, status, notes) VALUES($1,$2,$3,$4);`,
-    // [movie.name, movie.platform, movie.genre,movie.status, movie.notes ]);
+    
 
 }
 export async function updateMovie(
@@ -45,12 +46,10 @@ export async function updateMovie(
             notes
         }
     })
-    // return connection.query(`UPDATE movies SET status=$1 , notes =$2;`, [review.status,review.notes]);
 }
 
-export async function deleteMovie(id:string){
+export async function deleteMovie(id:number){
     return prisma.movies.delete({
         where: {id},
     })
-    // return connection.query(`DELETE FROM movies WHERE id=$1;`[id])
 }

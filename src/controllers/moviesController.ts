@@ -15,7 +15,7 @@ export async function getPlatform(req:Request,res:Response){
 }
 
 export async function postMovies(req:Request,res:Response){
-    const newMovie = res.locals.movie 
+    const newMovie = res.locals.movie as Movies
     const result = await insertMovie(newMovie);
     return res.send(`Movie added ${result}`).status(201)
 
@@ -27,7 +27,7 @@ export async function updateMovies(req:Request,res:Response){
 
 }
 
-export async function deleteMovies(req:Request,res:Response){
+export async function deleteMovies(id:number,req:Request,res:Response){
     const {id} = req.params
     const result = await deleteMovie(id);
     return res.send(`Movie deleted ${result}`).status(204)

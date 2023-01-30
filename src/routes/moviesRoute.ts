@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getMovies,getPlatform,postMovies,updateMovies,deleteMovies } from "../controllers/moviesControler.js";
+import { getMovies,getPlatform,postMovies,updateMovies,deleteMovies } from "../controllers/moviesController.js";
 import { movieValidation } from "../middlewares/movieValidationMiddleware.js";
 import { platformValidation } from "../middlewares/platformValidationMiddleware.js";
 import { reviewValidation } from "../middlewares/reviewValidationMiddleware.js";
