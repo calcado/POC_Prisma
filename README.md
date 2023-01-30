@@ -4,22 +4,20 @@ A simple POC about Prisma basics.
 # About
 This is a Prisma back-end project that allows you to do a CRUD (Create, Read, Update,Delete) about movies collections.
 
-# How to run for development
 
-1. Clone this repository
-2. Install all dependencies
-
-```bash
-npm i
-```
-
-3. Create a PostgresSQL database using the dump
-4. Run the back end 
+3. Create a PostgreSQL database with whatever name you want
+4. Configure the `.env.development` file using the `.env.example` file (see "Running application locally or inside docker section" for details)
+5. Run all migrations
 
 ```bash
-npm run dev
+npm run migration:run
 ```
 
+6. Seed db
+
+```bash
+npm run dev:seed
+```
 # Routes
 1) get("/movies")
 Get all the movies from the database
@@ -58,3 +56,21 @@ Update the movie's section of "status" and "notes" with params
 
 5)delete("/movies/:id");
 Delete a movie with params
+
+6)get("/ageRate");
+Get all age rates differentes rate types
+
+7)post("/ageRate");
+Create a age rate type
+
+8)delete("/ageRate/:id");
+Delete a age rate
+
+9)get("/trailers")
+Get all different trailers
+
+10)post("/trailers")
+Post a trailer 
+
+11)delete("/trailers/:id")
+Delete a trailer
