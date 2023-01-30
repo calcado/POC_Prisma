@@ -8,10 +8,22 @@ datasource db {
 }
 
 model movies {
-  id  Int @id @default(autoincrement())
-  name String
-  platform String
-  genre String
-  status String
-  notes String
+  id          Int    @id @default(autoincrement())
+  name        String
+  platform    String
+  genre       String
+  status      String
+  notes       String
+  ageRatingId Int
+  trailerId   Int
+}
+
+model ageRating {
+  id  Int    @id @default(autoincrement())
+  age String
+}
+
+model trailers {
+  id  Int    @id @default(autoincrement())
+  url String
 }
